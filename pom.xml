@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>AUTOM</groupId>
+  <artifactId>SELENIUMJENKINSMAVEN</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+    <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-api</artifactId>
+         <version>3.14.0</version>
+     </dependency>
+
+    <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-java</artifactId>
+         <version>3.14.0</version>
+     </dependency>
+     		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+   </dependencies>
+   <properties>
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+   <build>
+   
+   <testSourceDirectory>src/test</testSourceDirectory>
+   <plugins>
+  <plugin>
+   <groupId>org.apache.maven.plugins</groupId>
+   <artifactId>maven-failsafe-plugin</artifactId>
+   <version>2.7.2</version>
+   <configuration>
+   		<encoding>UTF-8</encoding>
+      <reportsDirectory>${basedir}/target/surefire-reports</reportsDirectory>
+      <includes>
+         <include>com/xebia/selenium/**/*.java</include> <!-- ... inclure les tests Selenium -->
+      </includes>
+      <systemPropertyVariables>
+         <jetty.port>${jetty.port}</jetty.port>
+         <jetty.context>${artifactId}</jetty.context>
+      </systemPropertyVariables>
+   </configuration>
+   <executions>
+      <execution>
+         <id>integration-test</id>
+         <goals>
+            <goal>integration-test</goal>
+         </goals>
+      </execution>
+      <execution>
+         <id>verify</id>
+         <goals>
+            <goal>verify</goal>
+         </goals>
+      </execution>
+   </executions>
+</plugin>
+   </plugins>  
+  </build>
+</project>
