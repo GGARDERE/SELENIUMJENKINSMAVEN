@@ -17,29 +17,34 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
 
 public class TestSeleniumTest {
-	
+	//public String prop1 = "chrome";
+			//System.getProperty("customProperty");
+			//
+			//
 	private WebDriver driver;
- 
+	
+
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-
-  @SuppressWarnings("deprecation")
+  private String BROWSER=System.getProperty("browser");
+ 
 @Before
   public void setUp() throws Exception {
-	 String toto="chrome";
-	 
-	if(toto=="IE")
+	 //String toto="FF";
+
+	if(BROWSER.equalsIgnoreCase("IE"))
+		//	prop1=="IE")
 		{
 		 File file = new File("C:/DriverAutomatisation/IEDriverServer_Win32_3.14.0/IEDriverServer.exe");
 	        System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 	        driver = new InternetExplorerDriver();
 		}
-	else if(toto=="chrome")
+	else if(BROWSER.equalsIgnoreCase("Chrome"))
 		{
 		System.setProperty("webdriver.chrome.driver", "C:/chromedriver2_43/chromedriver.exe");
 		driver = new ChromeDriver();
 		}
-	else if(toto=="FF")
+	else if(BROWSER.equalsIgnoreCase("Firefox"))
 		{
 
        String geckoDriverPath = "C:/geckoDriver/geckodriver-v0.24.0-win64/geckodriver.exe";
